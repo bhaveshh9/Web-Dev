@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHAVESH PATHAK — FRONTEND DEVELOPER</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* -------------------------------------------------
+     RESET
+  ------------------------------------------------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root{
+    --ink:      #131B2E;
+    --panel:    #1B2740;
+    --panel-2:  #202D4A;
+    --paper:    #ECE8DD;
+    --muted:    #9BA3B4;
+    --gold:     #E3B23C;
+    --teal:     #5FA8A0;
+    --line:     #33405E;
+    --mono:     'Space Mono', 'Courier New', monospace;
+    --sans:     'Inter', -apple-system, Segoe UI, Verdana, sans-serif;
+  }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  a{ color: var(--teal); text-decoration: none; }
+  a:hover, a:focus{ color: var(--gold); }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  img{ max-width: 100%; display: block; }
+
+  ul{ list-style: none; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* -------------------------------------------------
+     HEADER / NAV
+  ------------------------------------------------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(19,27,46,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+
+  .logo{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gold);
+  }
+  .logo span{ color: var(--paper); }
+
+  nav ul{
+    display: flex;
+    gap: 28px;
+  }
+
+  nav a{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--paper);
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+  }
+  nav a:hover{ border-bottom: 2px solid var(--gold); color: var(--paper); }
+
+  .menu-btn{
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--paper);
+    font-family: var(--mono);
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  /* -------------------------------------------------
+     HERO
+  ------------------------------------------------- */
+  .hero{
+    padding: 90px 0 70px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero .wrap{
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .hero-tag{
+    font-family: var(--mono);
+    color: var(--teal);
+    font-size: 0.8rem;
+    margin-bottom: 18px;
+  }
+
+  .hero-tag::before{ content: "> "; color: var(--gold); }
+
+  h1.hero-name{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.05;
+    color: var(--paper);
+  }
+
+  h1.hero-name em{
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-role{
+    margin-top: 18px;
+    max-width: 46ch;
+    color: var(--muted);
+    font-size: 0.95rem;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .hero-side{
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+  }
+
+  .hero-side p{
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .hero-side strong{ color: var(--paper); display:block; margin-bottom: 2px;}
+
+  .hero-cta{
+    margin-top: 26px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 12px 22px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn.solid{
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .btn:hover{ background: var(--gold); color: var(--ink); }
+
+  /* -------------------------------------------------
+     SECTION SHELL
+  ------------------------------------------------- */
+  section{ padding: 70px 0; border-bottom: 1px solid var(--line); }
+
+  .sec-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 36px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .sec-head h2{
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    color: var(--paper);
+  }
+
+  .sec-head span{
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* -------------------------------------------------
+     ABOUT
+  ------------------------------------------------- */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 44px;
+  }
+
+  .about-photo{
+    aspect-ratio: 4/5;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-text p{
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--paper);
+    margin-bottom: 16px;
+    max-width: 62ch;
+  }
+
+  .about-text p:first-child::first-letter{
+    font-family: var(--mono);
+    font-size: 2.6rem;
+    color: var(--gold);
+    float: left;
+    line-height: 1;
+    margin-right: 8px;
+  }
+
+  aside.fact{
+    margin-top: 26px;
+    border-left: 2px solid var(--teal);
+    padding-left: 16px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--teal);
+  }
+
+  /* -------------------------------------------------
+     SKILLS
+  ------------------------------------------------- */
+  .skills-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .skills-list li{
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 20px;
+  }
+
+  .skills-list li b{
+    font-family: var(--mono);
+    display: block;
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .skills-list li small{
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .bar-track{
+    height: 4px;
+    background: var(--line);
+    margin-top: 10px;
+  }
+  .bar-fill{ height: 100%; background: var(--teal); }
+
+  /* -------------------------------------------------
+     PROJECTS
+  ------------------------------------------------- */
+  .projects{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .project{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project:nth-child(2){ margin-top: 34px; }
+
+  .project-media{
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--panel-2), var(--ink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-body{ padding: 18px; flex: 1; display: flex; flex-direction: column; }
+
+  .project-body h3{
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .project-body p{
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--muted);
+    font-size: 0.85rem;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .tags{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;}
+  .tags span{
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 3px 8px;
+  }
+
+  .project-body a{
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    align-self: flex-start;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  /* -------------------------------------------------
+     CONTACT
+  ------------------------------------------------- */
+  .contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  form{ display: flex; flex-direction: column; gap: 16px; }
+
+  label{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  input, textarea{
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--paper);
+    font-family: var(--sans);
+    text-transform: uppercase;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  input::placeholder, textarea::placeholder{ color: #5b6784; }
+
+  textarea{ resize: vertical; min-height: 110px; }
+
+  .contact-info dl{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .contact-info dt{
+    font-family: var(--mono);
+    color: var(--muted);
+  }
+
+  .contact-info dd{ color: var(--paper); }
+
+  .contact-info{ border-left: 2px solid var(--gold); padding-left: 22px; }
+
+  /* -------------------------------------------------
+     FOOTER
+  ------------------------------------------------- */
+  footer{
+    padding: 30px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  footer p{
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  footer ul{ display: flex; gap: 18px; }
+  footer a{ font-family: var(--mono); font-size: 0.7rem; }
+
+  /* -------------------------------------------------
+     RESPONSIVE
+  ------------------------------------------------- */
+  @media (max-width: 860px){
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .hero-side{ border-left: none; border-top: 2px solid var(--gold); padding-left: 0; padding-top: 16px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .about-photo{ aspect-ratio: 16/9; }
+    .skills-list{ grid-template-columns: repeat(2, 1fr); }
+    .projects{ grid-template-columns: repeat(2, 1fr); }
+    .project:nth-child(2){ margin-top: 0; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    .contact-info{ border-left: none; border-top: 2px solid var(--gold); padding-left: 0; padding-top: 20px; }
+  }
+
+  @media (max-width: 620px){
+    nav ul{
+      position: fixed;
+      top: 61px; left: 0; right: 0;
+      background: var(--ink);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      padding: 18px 24px;
+      gap: 16px;
+      display: none;
+    }
+    nav ul.open{ display: flex; }
+    .menu-btn{ display: block; }
+    .skills-list{ grid-template-columns: 1fr; }
+    .projects{ grid-template-columns: 1fr; }
+    .hero{ padding: 60px 0 50px; }
+    section{ padding: 50px 0; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner wrap" style="padding-left:0; padding-right:0;">
+    <div class="logo">BHAVESH<span>.DEV</span></div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navList">MENU</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#work">PROJECTS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div>
+        <p class="hero-tag">WELCOME TO MY CORNER OF THE INTERNET</p>
+        <h1 class="hero-name">BHAVESH <em>PATHAK</em></h1>
+        <p class="hero-role">I BUILD FAST, CLEAN WEBSITES FOR SMALL BUSINESSES AND STARTUPS FROM MY DESK IN NASHIK. NO TEMPLATES, NO SHORTCUTS — JUST HAND-WRITTEN CODE THAT ACTUALLY LOADS FAST.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn solid">SEE MY WORK</a>
+          <a href="#contact" class="btn">GET IN TOUCH</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <p><strong>BASED IN</strong>NASHIK, MAHARASHTRA, INDIA</p>
+        <p><strong>CURRENTLY</strong>FREELANCING + OPEN TO PROJECTS</p>
+        <p><strong>EXPERIENCE</strong>5 YEARS BUILDING FOR THE WEB</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>ABOUT ME</h2>
+        <span>NO FANCY DEGREE, JUST A LOT OF LATE NIGHTS</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo"><img src="bhavesh.jpeg" alt="Bhavesh Pathak"></div>
+       <div class="about-text">
+  <p>I'M AN IT STUDENT WHO LOVES BUILDING THINGS WITH TECHNOLOGY, BUT FOOTBALL HAS ALWAYS BEEN A BIG PART OF MY LIFE. I ENJOY THE DISCIPLINE, TEAMWORK AND COMPETITIVE MINDSET THAT THE GAME BRINGS, BOTH ON AND OFF THE FIELD.</p>
+  <p>THESE DAYS I SPEND MY TIME BALANCING FOOTBALL WITH SOFTWARE DEVELOPMENT, AI AND MACHINE LEARNING. I WORK WITH TECHNOLOGIES LIKE PYTHON, FLASK, FASTAPI, PYTORCH, U-NET, APIS AND GIT, BUILDING PRACTICAL PROJECTS THAT SOLVE REAL-WORLD PROBLEMS. FOOTBALL KEEPS ME ACTIVE AND COMPETITIVE, WHILE TECHNOLOGY KEEPS ME CURIOUS AND ALWAYS READY TO LEARN SOMETHING NEW.</p>
+  <aside class="fact">FUN FACT — I CAN SPEND HOURS DEBUGGING CODE, BUT I'LL STILL MAKE TIME TO GET ON THE FOOTBALL FIELD.</aside>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>WHAT I WORK WITH</h2>
+        <span>TOOLS I REACH FOR MOST DAYS</span>
+      </div>
+      <ul class="skills-list">
+        <li>
+          <b>HTML &amp; CSS</b>
+          <small>SEMANTIC, ACCESSIBLE, WRITTEN BY HAND — NO PAGE BUILDERS</small>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </li>
+        <li>
+          <b>JAVASCRIPT</b>
+          <small>VANILLA JS FOR MOST THINGS, REACT WHEN A PROJECT NEEDS IT</small>
+          <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        </li>
+        <li>
+          <b>RESPONSIVE LAYOUT</b>
+          <small>MOBILE FIRST, TESTED ON REAL DEVICES, NOT JUST DEVTOOLS</small>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </li>
+        <li>
+          <b>WORDPRESS &amp; CMS</b>
+          <small>CUSTOM THEMES FOR CLIENTS WHO WANT TO EDIT THINGS THEMSELVES</small>
+          <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+        </li>
+        <li>
+          <b>PERFORMANCE</b>
+          <small>COMPRESSING, LAZY LOADING, KEEPING PAGES UNDER 1MB</small>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+        </li>
+        <li>
+          <b>BASIC BACKEND</b>
+          <small>NODE AND SIMPLE APIS WHEN A SITE NEEDS A FORM TO ACTUALLY WORK</small>
+          <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>SELECTED PROJECTS</h2>
+        <span>A FEW THINGS I'VE SHIPPED RECENTLY</span>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <div class="project-media"><img src="n1.png" alt="Sweet Tooth Bakery"></div>
+          <div class="project-body">
+            <h3>SWEET TOOTH BAKERY</h3>
+            <p>A MENU-FIRST WEBSITE FOR A LOCAL BAKERY, BUILT SO THE OWNER CAN UPDATE PRICES HERSELF WITHOUT CALLING ME EVERY WEEK.</p>
+            <div class="tags"><span>HTML</span><span>CSS</span><span>CMS</span></div>
+            <a href="#">VIEW CASE STUDY</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-media"><img src="images (8).jpg" alt="Civic Issue Tracker"> </div>
+          <div class="project-body">
+            <h3>CIVIC ISSUE TRACKER</h3>
+            <p>A SIDE PROJECT LETTING RESIDENTS REPORT POTHOLES AND STREETLIGHT ISSUES ON A MAP. STILL MAINTAINED, STILL FREE.</p>
+            <div class="tags"><span>JAVASCRIPT</span><span>MAPS API</span><span>NODE</span></div>
+            <a href="#">VIEW CASE STUDY</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-media"><img src="images.jpg" alt="Tuition Centre Booking Tool"></div>
+          <div class="project-body">
+            <h3>TUITION CENTRE BOOKING</h3>
+            <p>A SIMPLE SCHEDULING TOOL FOR A TUITION CENTRE SO PARENTS CAN BOOK DEMO CLASSES WITHOUT A PHONE CALL.</p>
+            <div class="tags"><span>REACT</span><span>FORMS</span><span>RESPONSIVE</span></div>
+            <a href="#">VIEW CASE STUDY</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>LET'S TALK</h2>
+        <span>USUALLY REPLY WITHIN A DAY</span>
+      </div>
+      <div class="contact-grid">
+        <form>
+          <div>
+            <label for="name">YOUR NAME</label>
+            <input type="text" id="name" name="name" placeholder="e.g. PRIYA SHARMA" required>
+          </div>
+          <div>
+            <label for="email">YOUR EMAIL</label>
+            <input type="email" id="email" name="email" placeholder="YOU@EXAMPLE.COM" required>
+          </div>
+          <div>
+            <label for="message">PROJECT DETAILS</label>
+            <textarea id="message" name="message" placeholder="TELL ME A BIT ABOUT WHAT YOU'RE BUILDING..." required></textarea>
+          </div>
+          <button type="submit" class="btn solid" style="align-self:flex-start;">SEND MESSAGE</button>
+        </form>
+        <div class="contact-info">
+          <dl>
+            <dt>EMAIL</dt>
+            <dd>HELLO@BHAVESHPATHAK.DEV</dd>
+            <dt>PHONE</dt>
+            <dd>+91 98XXX XXXXX</dd>
+            <dt>LOCATION</dt>
+            <dd>NASHIK, MAHARASHTRA, INDIA</dd>
+            <dt>AVAILABILITY</dt>
+            <dd>TAKING NEW PROJECTS FROM NEXT MONTH</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; width:100%;">
+    <p>&copy; 2026 BHAVESH PATHAK. BUILT LINE BY LINE, NO PAGE BUILDER HARMED.</p>
+    <ul>
+      <li><a href="#">GITHUB</a></li>
+      <li><a href="#">LINKEDIN</a></li>
+      <li><a href="#">TWITTER</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

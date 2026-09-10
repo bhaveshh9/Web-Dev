@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATCHDAY KITS — Football Jersey Store</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --charcoal:#15151b;
+    --charcoal-2:#1d1d26;
+    --maroon:#7c1f2e;
+    --maroon-dark:#5c1420;
+    --gold:#c6992f;
+    --gold-light:#e0b955;
+    --offwhite:#f3eee4;
+    --navy:#16233e;
+    --ink:#111116;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family:'Barlow', sans-serif;
+    background-color:var(--offwhite);
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  h1,h2,h3,h4,h5,h6,
+  .navbar-brand, .nav-link, .btn, label, .form-label,
+  th, .badge, .footer-heading, .card-title, .stat-label, .club-name{
+    font-family:'Bebas Neue', 'Barlow', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+
+  .btn{ letter-spacing:.12em; font-weight:600; border-radius:2px;}
+
+  /* ---------- NAVBAR ---------- */
+  .navbar{
+    background-color:var(--charcoal);
+    border-bottom:3px solid var(--gold);
+  }
+  .navbar-brand{
+    color:var(--offwhite) !important;
+    font-size:1.5rem;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .navbar-brand svg{ width:28px; height:28px; }
+  .nav-link{
+    color:#cfcfd6 !important;
+    font-size:.85rem;
+    letter-spacing:.14em;
+    margin:0 .4rem;
+  }
+  .nav-link:hover, .nav-link.active{ color:var(--gold-light) !important; }
+  .btn-cart{
+    background-color:var(--maroon);
+    color:var(--offwhite);
+    border:1px solid var(--gold);
+    font-size:.78rem;
+    padding:.5rem 1rem;
+  }
+  .btn-cart:hover{ background-color:var(--maroon-dark); color:var(--gold-light); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(115deg, var(--charcoal) 0 55%, var(--maroon) 55% 100%);
+    overflow:hidden;
+    padding:5.5rem 0 4rem;
+  }
+  .hero::before{
+    /* pitch center-circle motif */
+    content:"";
+    position:absolute;
+    right:-140px; top:-140px;
+    width:480px; height:480px;
+    border:2px solid rgba(243,238,228,.12);
+    border-radius:50%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:60px; top:60px;
+    width:220px; height:220px;
+    border:2px solid rgba(243,238,228,.10);
+    border-radius:50%;
+  }
+  .hero-number{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:14rem;
+    line-height:1;
+    color:rgba(243,238,228,.06);
+    position:absolute;
+    right:2%;
+    bottom:-2.5rem;
+    user-select:none;
+    z-index:0;
+  }
+  .hero-content{ position:relative; z-index:1; }
+  .hero-kicker{
+    color:var(--gold-light);
+    font-size:.85rem;
+    letter-spacing:.3em;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .hero-kicker svg{ width:16px; height:16px; }
+  .hero h1{
+    color:var(--offwhite);
+    font-size:3.4rem;
+    line-height:1.05;
+    margin:.6rem 0 1rem;
+  }
+  .hero p.lead-copy{
+    color:#d8d5cc;
+    font-family:'Barlow', sans-serif;
+    text-transform:none;
+    letter-spacing:normal;
+    max-width:520px;
+    font-size:1.05rem;
+  }
+  .btn-primary-gold{
+    background-color:var(--gold);
+    border:1px solid var(--gold);
+    color:var(--ink);
+    font-size:.85rem;
+    padding:.75rem 1.6rem;
+  }
+  .btn-primary-gold:hover{ background-color:var(--gold-light); color:var(--ink); }
+  .btn-outline-light-x{
+    background:transparent;
+    border:1px solid rgba(243,238,228,.5);
+    color:var(--offwhite);
+    font-size:.85rem;
+    padding:.75rem 1.6rem;
+  }
+  .btn-outline-light-x:hover{ background:rgba(243,238,228,.1); color:var(--gold-light); border-color:var(--gold-light);}
+
+  .stat-strip{
+    border-top:1px dashed rgba(243,238,228,.25);
+    margin-top:3rem;
+    padding-top:1.6rem;
+  }
+  .stat-num{
+    font-family:'Bebas Neue', sans-serif;
+    color:var(--gold-light);
+    font-size:2.2rem;
+    line-height:1;
+  }
+  .stat-label{
+    color:#bdbac2;
+    font-size:.72rem;
+    letter-spacing:.16em;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features{ background-color:var(--offwhite); padding:4rem 0; }
+  .feature-icon{
+    width:56px; height:56px;
+    border:2px solid var(--maroon);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--maroon);
+    margin-bottom:1rem;
+  }
+  .feature-icon svg{ width:26px; height:26px; }
+  .section-heading{
+    font-size:2.1rem;
+    margin-bottom:.3rem;
+  }
+  .section-rule{
+    width:64px; height:4px;
+    background:var(--gold);
+    margin-bottom:1.2rem;
+  }
+
+  /* ---------- PRODUCT CARDS ---------- */
+  .shop{ background-color:var(--ink); padding:4.5rem 0; }
+  .shop .section-heading, .shop p.section-sub{ color:var(--offwhite); }
+  .shop p.section-sub{
+    text-transform:none; letter-spacing:normal; color:#a9a6ac; max-width:560px;
+  }
+  .jersey-card{
+    background-color:var(--charcoal-2);
+    border:1px solid #2c2c38;
+    border-radius:4px;
+    overflow:hidden;
+    width:70%;
+    height:100%;
+    transition:border-color .2s ease;
+  }
+  .jersey-card:hover{ border-color:var(--gold); }
+  .jersey-visual{
+    height:230px;
+    
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:repeating-linear-gradient(115deg, var(--jc1) 0 22px, var(--jc2) 22px 44px);
+  }
+  .jersey-visual .num{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:5rem;
+    color:rgba(255,255,255,.92);
+    -webkit-text-stroke:2px var(--ink);
+  }
+  .jersey-visual .tag{
+    position:absolute; top:10px; left:10px;
+    font-size:.65rem;
+    padding:.25rem .55rem;
+    background:var(--gold);
+    color:var(--ink);
+    border-radius:2px;
+    letter-spacing:.1em;
+  }
+  .card-body-x{ padding:1.1rem 1.2rem 1.3rem; }
+  .club-name{ color:var(--offwhite); font-size:1.05rem; margin-bottom:.15rem; }
+  .kit-sub{
+    text-transform:none; color:#9b98a0; font-size:.82rem; letter-spacing:normal; margin-bottom:.7rem;
+  }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; }
+  .price{ color:var(--gold-light); font-family:'Bebas Neue',sans-serif; font-size:1.3rem; }
+  .btn-buy{
+    background-color:var(--maroon);
+    color:var(--offwhite);
+    font-size:.72rem;
+    padding:.5rem .9rem;
+    border:none;
+  }
+  .btn-buy:hover{ background-color:var(--gold); color:var(--ink); }
+
+  /* ---------- SIZE GUIDE TABLE ---------- */
+  .size-guide{ background-color:var(--offwhite); padding:4.5rem 0; }
+  .table-kit{
+    background-color:var(--charcoal);
+    color:var(--offwhite);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .table-kit thead th{
+    background-color:var(--maroon);
+    color:var(--offwhite);
+    font-size:.78rem;
+    letter-spacing:.12em;
+    border-bottom:2px solid var(--gold);
+    padding:.9rem .75rem;
+  }
+  .table-kit tbody td{
+    padding:.75rem;
+    border-color:#2c2c38;
+    font-family:'Barlow', sans-serif;
+    text-transform:none;
+    font-weight:600;
+  }
+  .table-kit tbody tr:hover{ background-color:rgba(198,153,47,.12); }
+  .size-note{
+    font-size:.85rem; color:#5c5a60; text-transform:none; letter-spacing:normal;
+  }
+
+  /* ---------- CUSTOM FORM ---------- */
+  .customize{ background-color:var(--navy); padding:4.5rem 0; }
+  .customize .section-heading, .customize p.section-sub{ color:var(--offwhite); }
+  .customize p.section-sub{ text-transform:none; letter-spacing:normal; color:#c3c8d6; }
+  .kit-preview{
+    border:2px dashed var(--gold);
+    border-radius:6px;
+    padding:2.2rem 1.5rem;
+    text-align:center;
+    background:rgba(243,238,228,.03);
+    height:100%;
+  }
+  .kit-preview .jersey-outline{
+    width:150px; margin:0 auto 1rem;
+  }
+  .preview-name{
+    color:var(--gold-light); font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.1em;
+  }
+  .preview-number{
+    color:var(--offwhite); font-family:'Bebas Neue',sans-serif; font-size:3.2rem; line-height:1;
+  }
+  .form-card{
+    background-color:#101a30;
+    border:1px solid #263457;
+    border-radius:6px;
+    padding:2rem;
+  }
+  .form-card .form-label{
+    color:#c3c8d6; font-size:.75rem; letter-spacing:.12em;
+  }
+  .form-card .form-control, .form-card .form-select{
+    background-color:#0c1626;
+    border:1px solid #2a3a63;
+    color:var(--offwhite);
+    font-family:'Barlow', sans-serif;
+    text-transform:none;
+  }
+  .form-card .form-control:focus, .form-card .form-select:focus{
+    background-color:#0c1626;
+    color:var(--offwhite);
+    border-color:var(--gold);
+    box-shadow:0 0 0 .2rem rgba(198,153,47,.25);
+  }
+  .form-card .form-control::placeholder{ color:#5c6785; }
+  .btn-submit{
+    background-color:var(--gold);
+    color:var(--ink);
+    border:none;
+    font-size:.85rem;
+    padding:.7rem 1.4rem;
+    width:100%;
+  }
+  .btn-submit:hover{ background-color:var(--gold-light); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background-color:var(--charcoal); color:#a9a6ac; padding:3.5rem 0 1.5rem; border-top:3px solid var(--gold); }
+  .footer-heading{ color:var(--offwhite); font-size:1rem; margin-bottom:1rem; }
+  footer a{ color:#a9a6ac; text-decoration:none; font-size:.88rem; text-transform:none; letter-spacing:normal; }
+  footer a:hover{ color:var(--gold-light); }
+  .footer-bottom{
+    border-top:1px dashed #33333f;
+    margin-top:2.5rem;
+    padding-top:1.2rem;
+    font-size:.78rem;
+    text-transform:none;
+    letter-spacing:normal;
+    color:#6f6d74;
+  }
+  .social-dot{
+    width:34px; height:34px;
+    border:1px solid #3a3a47;
+    border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    color:#a9a6ac;
+    margin-right:.5rem;
+  }
+  .social-dot:hover{ border-color:var(--gold); color:var(--gold-light); }
+
+  @media (max-width:767px){
+    .hero h1{ font-size:2.3rem; }
+    .hero-number{ font-size:8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#c6992f" stroke-width="1.4"/>
+        <path d="M12 6.5 15.5 9 14.2 13 9.8 13 8.5 9Z" stroke="#c6992f" stroke-width="1.2" fill="none"/>
+        <path d="M12 6.5V3.2M15.5 9l3-1M14.2 13l1.8 2.6M9.8 13 8 15.6M8.5 9l-3-1" stroke="#c6992f" stroke-width="1.1"/>
+      </svg>
+      Matchday Kits
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" style="border-color:#3a3a47;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMain">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link active" href="#top">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#shop">Shop Kits</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sizing">Size Guide</a></li>
+        <li class="nav-item"><a class="nav-link" href="#customize">Customize</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="#shop" class="btn btn-cart"><i class="bi bi-bag"></i> Cart · 0</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero" id="top">
+  <span class="hero-number">10</span>
+  <div class="container hero-content">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="hero-kicker">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#e0b955" stroke-width="1.6"/>
+            <path d="M12 6.5 15.5 9 14.2 13 9.8 13 8.5 9Z" stroke="#e0b955" stroke-width="1.2"/>
+          </svg>
+          Official Matchday Merchandise
+        </div>
+        <h1>Wear The Badge.<br>Own The Match.</h1>
+        <p class="lead-copy">Match-grade football jerseys built for the terraces, the five-a-side pitch, and everywhere in between. Breathable fabric, true club colors, and a fit that moves with every touch, tackle, and goal celebration.</p>
+        <div class="d-flex gap-3 mt-4 flex-wrap">
+          <a href="#shop" class="btn btn-primary-gold">Shop The Kits</a>
+          <a href="#customize" class="btn btn-outline-light-x">Customize Your Own</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row stat-strip">
+      <div class="col-4 col-md-3">
+        <div class="stat-num">48K+</div>
+        <div class="stat-label">Kits Delivered</div>
+      </div>
+      <div class="col-4 col-md-3">
+        <div class="stat-num">120</div>
+        <div class="stat-label">Clubs Supplied</div>
+      </div>
+      <div class="col-4 col-md-3">
+        <div class="stat-num">4.8/5</div>
+        <div class="stat-label">Matchday Rating</div>
+      </div>
+      <div class="col-4 col-md-3 d-none d-md-block">
+        <div class="stat-num">24H</div>
+        <div class="stat-label">Dispatch Time</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 8 12 3l8 5-3 3-5-3-5 3z"/><path d="M7 11v8a5 5 0 0 0 10 0v-8"/>
+          </svg>
+        </div>
+        <h4>Match-Ready Fabric</h4>
+        <p class="size-note">Lightweight, sweat-wicking mesh panelling engineered for full ninety-minute performance, on the pitch or on the sofa.</p>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9"/><path d="M12 5.5 15 8 13.7 11.6 10.3 11.6 9 8Z"/>
+          </svg>
+        </div>
+        <h4>Authentic Club Fit</h4>
+        <p class="size-note">Cut from official templates with true-to-crest colorways, crest placement, and sponsor-accurate detailing.</p>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 12h13"/><path d="M12 6l6 6-6 6"/><path d="M17 6h3v12h-3"/>
+          </svg>
+        </div>
+        <h4>Fast Matchday Delivery</h4>
+        <p class="size-note">Order before kickoff week and get your name-and-number kit dispatched within twenty-four hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SHOP / CARDS ========== -->
+<section class="shop" id="shop">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-7">
+        <div class="section-rule"></div>
+        <h2 class="section-heading">Shop The Kits</h2>
+        <p class="section-sub">Home, away, and third kits for the season, finished with a stitched crest and premium collar trim.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual" >
+            <span class="tag">New</span>
+           <img src="images (1).jpg" alt="Ironclad FC Home Kit" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card-body-x">
+            <h5 class="club-name">Barcelona FC — Home Kit</h5>
+            <p class="kit-sub">Maroon &amp; gold, crew collar, breathable mesh back panel.</p>
+            <div class="price-row">
+              <span class="price">₹2,499</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual">
+            <span class="tag">Away</span>
+            <img src="images (2).jpg" alt="Northgate United Away Kit" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card-body-x">
+            <h5 class="club-name">Man City — Away Kit</h5>
+            <p class="kit-sub">Navy base with gold trim, V-neck cut, lightweight fabric.</p>
+            <div class="price-row">
+              <span class="price">₹2,299</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual" >
+            <span class="tag">Limited</span>
+              <img src="images (3).jpg" alt="AC Milan Third Kit" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+          <div class="card-body-x">
+            <h5 class="club-name">AC Milan — Third Kit</h5>
+            <p class="kit-sub">Blackout edition with tonal stripes and gold foil crest.</p>
+            <div class="price-row">
+              <span class="price">₹2,799</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual" >
+            <span class="tag">Home</span>
+            <img src="images (4).jpg" alt="Stonebridge Rovers Home Kit" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card-body-x">
+            <h5 class="club-name">Real Madrid— Home Kit</h5>
+            <p class="kit-sub">Gold &amp; charcoal quarters, raglan sleeve construction.</p>
+            <div class="price-row">
+              <span class="price">₹2,399</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual" style="--jc1:#5c1420; --jc2:#111116;">
+            <span class="tag">Away</span>
+           <img src="images (5).jpg" alt="Kestrel Town Away Kit" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card-body-x">
+            <h5 class="club-name">inter milan— Away Kit</h5>
+            <p class="kit-sub">Diagonal maroon-on-black hoops, minimal gold crest.</p>
+            <div class="price-row">
+              <span class="price">₹2,299</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="jersey-card">
+          <div class="jersey-visual" style="--jc1:#16233e; --jc2:#7c1f2e;">
+            <span class="tag">Third</span>
+            <img src="images (6).jpg" alt="PSG Third Kit" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card-body-x">
+            <h5 class="club-name">PSG — Third Kit</h5>
+            <p class="kit-sub">Split navy-maroon design, sponsor panel on chest.</p>
+            <div class="price-row">
+              <span class="price">₹2,599</span>
+              <button class="btn btn-buy">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SIZE GUIDE TABLE ========== -->
+<section class="size-guide" id="sizing">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-7">
+        <div class="section-rule"></div>
+        <h2 class="section-heading">Size Guide</h2>
+        <p class="size-note">Measurements are in inches, taken flat across the garment. Unsure between two sizes? Go one size up for a matchday-relaxed fit.</p>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-kit align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest</th>
+            <th>Length</th>
+            <th>Sleeve</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XS</td><td>34"</td><td>25"</td><td>8"</td><td>Youth / Slim Fit</td>
+          </tr>
+          <tr>
+            <td>S</td><td>36"</td><td>26"</td><td>8.5"</td><td>Slim Build</td>
+          </tr>
+          <tr>
+            <td>M</td><td>39"</td><td>27"</td><td>9"</td><td>Regular Build</td>
+          </tr>
+          <tr>
+            <td>L</td><td>42"</td><td>28"</td><td>9.5"</td><td>Athletic Build</td>
+          </tr>
+          <tr>
+            <td>XL</td><td>45"</td><td>29"</td><td>10"</td><td>Broad Build</td>
+          </tr>
+          <tr>
+            <td>XXL</td><td>48"</td><td>30"</td><td>10.5"</td><td>Extra Room Fit</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CUSTOMIZE FORM ========== -->
+<section class="customize" id="customize">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-7">
+        <div class="section-rule"></div>
+        <h2 class="section-heading">Customize Your Kit</h2>
+        <p class="section-sub">Add your name and squad number to any kit in the lineup. Preview updates as you type — final print is heat-pressed for matchday durability.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="kit-preview">
+          <svg class="jersey-outline" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 8 10 20l6 14 10-4v52h48V30l10 4 6-14L70 8l-8 6H38z" stroke="#c6992f" stroke-width="2"/>
+          </svg>
+          <div class="preview-name">Your Name</div>
+          <div class="preview-number">10</div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <form class="form-card">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" placeholder="e.g. Rahul Verma">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Name On Jersey</label>
+              <input type="text" class="form-control" placeholder="e.g. VERMA">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Jersey Number</label>
+              <input type="number" min="0" max="99" class="form-control" placeholder="10">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Size</label>
+              <select class="form-select">
+                <option>XS</option><option>S</option><option selected>M</option>
+                <option>L</option><option>XL</option><option>XXL</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Choose Kit</label>
+              <select class="form-select">
+                <option>Ironclad FC — Home</option>
+                <option>Northgate United — Away</option>
+                <option>Riverside Athletic — Third</option>
+                <option>Stonebridge Rovers — Home</option>
+                <option>Kestrel Town — Away</option>
+                <option>Highfield City — Third</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" placeholder="you@email.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" placeholder="+91 00000 00000">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Delivery Address</label>
+              <textarea class="form-control" rows="2" placeholder="House / Street / City / PIN Code"></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Special Notes (Optional)</label>
+              <textarea class="form-control" rows="2" placeholder="Badge placement, patch requests, etc."></textarea>
+            </div>
+            <div class="col-12 form-check ms-1">
+              <input class="form-check-input" type="checkbox" id="terms">
+              <label class="form-check-label size-note" for="terms" style="font-family:'Barlow',sans-serif;">
+                I confirm my name and number spelling is correct for printing.
+              </label>
+            </div>
+            <div class="col-12 col-md-5">
+              <button type="submit" class="btn btn-submit">Confirm Custom Kit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="navbar-brand mb-2" style="font-size:1.3rem;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#c6992f" stroke-width="1.4"/>
+            <path d="M12 6.5 15.5 9 14.2 13 9.8 13 8.5 9Z" stroke="#c6992f" stroke-width="1.2"/>
+          </svg>
+          Matchday Kits
+        </div>
+        <p style="text-transform:none; font-size:.9rem; max-width:320px;">Independent football kit house supplying clubs, five-a-side sides, and supporters since 2010.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="footer-heading">Shop</div>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#shop">Home Kits</a></li>
+          <li><a href="#shop">Away Kits</a></li>
+          <li><a href="#shop">Third Kits</a></li>
+          <li><a href="#customize">Customize</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="footer-heading">Support</div>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#sizing">Size Guide</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <div class="footer-heading">Matchday Newsletter</div>
+        <p style="text-transform:none; font-size:.85rem;">Fixture drops, restocks, and early access to limited kits.</p>
+        <form class="d-flex gap-2">
+          <input type="email" class="form-control form-control-sm" placeholder="Email address" style="background:#0c1626;border:1px solid #33333f;color:#f3eee4;">
+          <button class="btn btn-cart btn-sm" type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between">
+      <span>© 2026 Matchday Kits. All Rights Reserved.</span>
+      <span>Made For The Game.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

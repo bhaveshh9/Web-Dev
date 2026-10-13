@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDENT MARKSHEET</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f2f4f7; color: #222; text-transform: uppercase; }
+  nav { background: #1f3a5f; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  nav .brand { color: #fff; font-weight: bold; letter-spacing: 1px; padding: 14px 0; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+  nav a { display: block; color: #fff; text-decoration: none; padding: 14px 18px; font-size: 14px; }
+  nav a:hover, nav a.active { background: #16304f; }
+  .container { max-width: 800px; margin: 30px auto; background: #fff; padding: 30px; border: 1px solid #ccd; }
+  h1 { text-align: center; margin: 0 0 5px; font-size: 22px; color: #1f3a5f; }
+  h2 { text-align: center; margin: 0 0 25px; font-size: 14px; font-weight: normal; color: #555; }
+  table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+  th, td { border: 1px solid #444; padding: 10px; text-align: center; }
+  th { background: #1f3a5f; color: #fff; }
+  .info td { text-align: left; border: 1px solid #bbb; }
+  .info td:first-child { font-weight: bold; background: #eef1f5; width: 30%; }
+  .summary td { font-weight: bold; background: #eef1f5; }
+  .pass { color: #1b7a2b; font-weight: bold; }
+  footer { text-align: center; font-size: 12px; color: #666; padding: 15px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">STUDENT PORTAL</div>
+  <ul>
+    <li><a href="marksheet.html" class="active">MARKSHEET</a></li>
+    <li><a href="registration.html">REGISTRATION</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>KBTCOE COLLEGE OF ENGINEERING,NASHIK</h1>
+  <h2>SEMESTER EXAMINATION MARKSHEET - 2026</h2>
+
+  <table class="info">
+    <tr><td>STUDENT NAME</td><td>BHAVESH PATHAK</td></tr>
+    <tr><td>ROLL NUMBER</td><td>CS2026045</td></tr>
+    <tr><td>COURSE</td><td>B.TECH INFORMATION TECHNOLOGY</td></tr>
+    <tr><td>SEMESTER</td><td>FIFTH</td></tr>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>S. NO.</th>
+        <th>SUBJECT</th>
+        <th>MAXIMUM MARKS</th>
+        <th>MARKS OBTAINED</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>DAA</td><td>100</td><td>85</td></tr>
+      <tr><td>2</td><td>CN</td><td>100</td><td>78</td></tr>
+      <tr><td>3</td><td>VSEC</td><td>100</td><td>82</td></tr>
+      <tr><td>4</td><td>DSV</td><td>100</td><td>74</td></tr>
+      <tr><td>5</td><td>AT</td><td>100</td><td>91</td></tr>
+    </tbody>
+    <tfoot class="summary">
+      <tr><td colspan="2">TOTAL</td><td>500</td><td>410</td></tr>
+      <tr><td colspan="3">PERCENTAGE</td><td>82.00 %</td></tr>
+      <tr><td colspan="3">GRADE</td><td>A</td></tr>
+      <tr><td colspan="3">RESULT</td><td class="pass">PASS</td></tr>
+    </tfoot>
+  </table>
+</div>
+
+<footer>&copy; 2026 KBTCOE COLLEGE OF ENGINEERING, NASHIK. ALL RIGHTS RESERVED.</footer>
+
+</body>
+</html>

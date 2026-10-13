@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDENT REGISTRATION</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f2f4f7; color: #222; text-transform: uppercase; }
+  nav { background: #1f3a5f; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  nav .brand { color: #fff; font-weight: bold; letter-spacing: 1px; padding: 14px 0; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+  nav a { display: block; color: #fff; text-decoration: none; padding: 14px 18px; font-size: 14px; }
+  nav a:hover, nav a.active { background: #16304f; }
+  .container { max-width: 600px; margin: 30px auto; background: #fff; padding: 30px; border: 1px solid #ccd; }
+  h1 { text-align: center; margin: 0 0 25px; font-size: 22px; color: #1f3a5f; }
+  .field { margin-bottom: 18px; }
+  label.title { display: block; font-size: 13px; font-weight: bold; margin-bottom: 6px; }
+  input[type="text"], input[type="email"], input[type="date"], select {
+    width: 100%; padding: 10px; border: 1px solid #888; font-size: 14px; text-transform: uppercase; }
+  input:focus, select:focus { outline: 2px solid #1f3a5f; }
+  .radio-group label { margin-right: 20px; font-size: 14px; }
+  .error { color: #b00020; font-size: 12px; margin-top: 4px; min-height: 14px; }
+  .buttons { text-align: center; margin-top: 25px; }
+  button { padding: 10px 28px; font-size: 14px; font-weight: bold; border: none; cursor: pointer; margin: 0 8px; text-transform: uppercase; }
+  .submit { background: #1f3a5f; color: #fff; }
+  .reset { background: #777; color: #fff; }
+  button:hover { opacity: 0.9; }
+  footer { text-align: center; font-size: 12px; color: #666; padding: 15px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">STUDENT PORTAL</div>
+  <ul>
+    <li><a href="Assigment_2/marksheet.html">MARKSHEET</a></li>
+    <li><a href="registration.html" class="active">REGISTRATION</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>STUDENT REGISTRATION FORM</h1>
+
+  <form id="regForm" onsubmit="return validateForm()" novalidate>
+
+    <div class="field">
+      <label class="title" for="name">FULL NAME *</label>
+      <input type="text" id="name" name="name" placeholder="ENTER FULL NAME">
+      <div class="error" id="nameErr"></div>
+    </div>
+
+    <div class="field">
+      <label class="title" for="email">EMAIL ADDRESS *</label>
+      <input type="email" id="email" name="email" placeholder="ENTER EMAIL ADDRESS">
+      <div class="error" id="emailErr"></div>
+    </div>
+
+    <div class="field">
+      <label class="title">GENDER *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="male"> MALE</label>
+        <label><input type="radio" name="gender" value="female"> FEMALE</label>
+        <label><input type="radio" name="gender" value="other"> OTHER</label>
+      </div>
+      <div class="error" id="genderErr"></div>
+    </div>
+
+    <div class="field">
+      <label class="title" for="dob">DATE OF BIRTH *</label>
+      <input type="date" id="dob" name="dob">
+      <div class="error" id="dobErr"></div>
+    </div>
+
+    <div class="field">
+      <label class="title" for="course">COURSE SELECTION *</label>
+      <select id="course" name="course">
+        <option value="">-- SELECT COURSE --</option>
+        <option value="bsc-cs">B.SC. COMPUTER SCIENCE</option>
+        <option value="bca">BCA</option>
+        <option value="btech">B.TECH</option>
+        <option value="bcom">B.COM</option>
+        <option value="ba">B.A.</option>
+        <option value="mba">MBA</option>
+      </select>
+      <div class="error" id="courseErr"></div>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="submit">SUBMIT</button>
+      <button type="reset" class="reset" onclick="clearErrors()">RESET</button>
+    </div>
+  </form>
+</div>
+
+<footer>&copy; 2026 ABC COLLEGE OF SCIENCE AND TECHNOLOGY. ALL RIGHTS RESERVED.</footer>
+
+<script>
+  // SET MAX DATE TO TODAY
+  document.getElementById("dob").max = new Date().toISOString().split("T")[0];
+
+  function setError(id, msg) {
+    document.getElementById(id).textContent = msg;
+    return msg === "";
+  }
+
+  function clearErrors() {
+    ["nameErr", "emailErr", "genderErr", "dobErr", "courseErr"].forEach(function (id) {
+      document.getElementById(id).textContent = "";
+    });
+  }
+
+  function validateForm() {
+    var valid = true;
+
+    var name = document.getElementById("name").value.trim();
+    if (name === "") valid = setError("nameErr", "NAME IS REQUIRED.") && valid;
+    else if (!/^[A-Za-z ]{3,50}$/.test(name)) valid = setError("nameErr", "ONLY LETTERS, 3 TO 50 CHARACTERS.") && valid;
+    else setError("nameErr", "");
+
+    var email = document.getElementById("email").value.trim();
+    if (email === "") valid = setError("emailErr", "EMAIL IS REQUIRED.") && valid;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) valid = setError("emailErr", "ENTER A VALID EMAIL ADDRESS.") && valid;
+    else setError("emailErr", "");
+
+    if (!document.querySelector('input[name="gender"]:checked')) valid = setError("genderErr", "SELECT A GENDER.") && valid;
+    else setError("genderErr", "");
+
+    var dob = document.getElementById("dob").value;
+    if (dob === "") valid = setError("dobErr", "DATE OF BIRTH IS REQUIRED.") && valid;
+    else if (new Date(dob) > new Date()) valid = setError("dobErr", "DATE CANNOT BE IN THE FUTURE.") && valid;
+    else setError("dobErr", "");
+
+    if (document.getElementById("course").value === "") valid = setError("courseErr", "SELECT A COURSE.") && valid;
+    else setError("courseErr", "");
+
+    if (valid) {
+      alert("REGISTRATION SUBMITTED SUCCESSFULLY!");
+      document.getElementById("regForm").reset();
+    }
+    return false; // PREVENT PAGE RELOAD (NO SERVER)
+  }
+</script>
+
+</body>
+</html>

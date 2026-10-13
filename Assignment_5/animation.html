@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS ANIMATION AND TRANSITION DEMO</title>
+<link rel="stylesheet" href="animation.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">MATCHDAY KITS</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">STORE</a></li>
+      <li><a href="#buttons" class="active">BUTTONS</a></li>
+      <li><a href="#images">IMAGES</a></li>
+      <li><a href="#text">TEXT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- BUTTONS -->
+  <section class="section" id="buttons">
+    <h2>1. BUTTON EFFECTS</h2>
+    <p class="note">HOVER OVER EACH BUTTON. THE LAST ONE USES A CONTINUOUS KEYFRAME ANIMATION.</p>
+    <div class="row">
+      <button class="btn btn-lift">LIFT AND SHADOW</button>
+      <button class="btn btn-fill">BACKGROUND FILL</button>
+      <button class="btn btn-grow">SCALE AND SPACING</button>
+      <button class="btn btn-pulse">PULSE ANIMATION</button>
+    </div>
+  </section>
+
+  <!-- IMAGES -->
+  <section class="section" id="images">
+    <h2>2. IMAGE EFFECTS</h2>
+    <p class="note">HOVER OVER EACH IMAGE TO SEE THE TRANSITION.</p>
+    <div class="row">
+      <div class="img-box zoom"><img src="images (1).jpg" alt="ZOOM EFFECT"></div>
+      <div class="img-box rotate"><img src="images (2).jpg" alt="ROTATE AND COLOR EFFECT"></div>
+      <div class="img-box slide">
+        <img src="images (3).jpg" alt="SLIDE CAPTION EFFECT">
+        <div class="caption">AC MILAN - THIRD KIT</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:12px;text-align:center;">ZOOM &nbsp;|&nbsp; ROTATE + GRAYSCALE TO COLOR &nbsp;|&nbsp; CAPTION SLIDE UP</p>
+  </section>
+
+  <!-- TEXT -->
+  <section class="section" id="text">
+    <h2>3. TEXT AND SHAPE ANIMATIONS</h2>
+    <p class="note">KEYFRAME ANIMATIONS RUN AUTOMATICALLY. THE HOVER TEXT USES A TRANSITION.</p>
+    <div class="text-demo">
+      <div class="text-card"><div class="fade-text">WEAR THE BADGE</div><small>FADE IN AND SLIDE UP</small></div>
+      <div class="text-card"><div class="typing">OWN THE MATCH, EVERY DAY</div><small>TYPING EFFECT</small></div>
+      <div class="text-card"><div class="color-text">MATCHDAY KITS</div><small>COLOR SHIFT</small></div>
+      <div class="text-card"><div class="hover-text">HOVER ON ME</div><small>TRANSITION ON HOVER</small></div>
+      <div class="text-card"><div class="ball"></div><small>BOUNCING BALL</small></div>
+      <div class="text-card"><div class="spinner"></div><small>SPINNING LOADER</small></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>&copy; 2026 MATCHDAY KITS. ALL RIGHTS RESERVED.</span>
+  <span>CSS ANIMATION AND TRANSITION DEMO</span>
+</footer>
+
+</body>
+</html>

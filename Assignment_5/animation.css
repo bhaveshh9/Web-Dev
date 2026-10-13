@@ -1,0 +1,182 @@
+/* ==========================================================
+   CSS ANIMATION AND TRANSITION DEMO - EXTERNAL STYLESHEET
+   ========================================================== */
+
+:root {
+  --charcoal: #15151b;
+  --maroon: #7c1f2e;
+  --maroon-dark: #5c1420;
+  --gold: #c6992f;
+  --gold-light: #e0b955;
+  --offwhite: #f3eee4;
+  --ink: #111116;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--offwhite);
+  color: var(--ink);
+  text-transform: uppercase;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HEADER AND NAVBAR (FLEXBOX) ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 30px;
+  background-color: var(--charcoal);
+  border-bottom: 3px solid var(--gold);
+}
+.brand { color: var(--offwhite); font-weight: bold; letter-spacing: 1px; padding: 16px 0; }
+.site-header ul { list-style: none; display: flex; flex-wrap: wrap; }
+.site-header a { display: block; padding: 16px 18px; color: var(--offwhite); text-decoration: none; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
+.site-header a:hover, .site-header a.active { background-color: var(--maroon); color: var(--gold-light); }
+
+/* ---------- LAYOUT ---------- */
+main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20px; }
+.section { background: #fff; border: 1px solid #ccc; border-top: 4px solid var(--maroon); padding: 24px; margin-bottom: 28px; }
+.section h2 { font-size: 20px; color: var(--maroon); margin-bottom: 4px; }
+.section p.note { font-size: 12px; color: #666; margin-bottom: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; }
+
+/* ==========================================================
+   1. BUTTONS - TRANSITIONS AND ANIMATION
+   ========================================================== */
+.btn {
+  padding: 12px 26px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 2px solid var(--maroon);
+  background: var(--maroon);
+  color: var(--offwhite);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* A. COLOR + LIFT + SHADOW TRANSITION */
+.btn-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+.btn-lift:hover { transform: translateY(-6px); box-shadow: 0 8px 14px rgba(0, 0, 0, 0.3); background-color: var(--gold); border-color: var(--gold); color: var(--ink); }
+.btn-lift:active { transform: translateY(-2px); }
+
+/* B. BACKGROUND FILL SLIDE */
+.btn-fill {
+  background: linear-gradient(var(--maroon), var(--maroon)) no-repeat left / 0% 100%;
+  color: var(--maroon);
+  background-color: transparent;
+  transition: background-size 0.4s ease, color 0.4s ease;
+}
+.btn-fill:hover { background-size: 100% 100%; color: var(--offwhite); }
+
+/* C. SCALE + LETTER SPACING */
+.btn-grow { background: var(--charcoal); border-color: var(--charcoal); transition: transform 0.3s ease, letter-spacing 0.3s ease, background-color 0.3s ease; }
+.btn-grow:hover { transform: scale(1.12); letter-spacing: 3px; background-color: var(--maroon-dark); }
+
+/* D. CONTINUOUS PULSE (KEYFRAMES) */
+.btn-pulse { background: var(--gold); border-color: var(--gold); color: var(--ink); animation: pulse 1.5s infinite; }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(198, 153, 47, 0.7); transform: scale(1); }
+  70%  { box-shadow: 0 0 0 16px rgba(198, 153, 47, 0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(198, 153, 47, 0); transform: scale(1); }
+}
+
+/* ==========================================================
+   2. IMAGES - TRANSITIONS
+   ========================================================== */
+.img-box { position: relative; width: 260px; height: 220px; overflow: hidden; border: 3px solid var(--charcoal); }
+.img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* A. ZOOM */
+.zoom img { transition: transform 0.5s ease; }
+.zoom:hover img { transform: scale(1.2); }
+
+/* B. ROTATE + GRAYSCALE TO COLOR */
+.rotate img { filter: grayscale(100%); transition: transform 0.6s ease, filter 0.6s ease; }
+.rotate:hover img { transform: rotate(6deg) scale(1.2); filter: grayscale(0%); }
+
+/* C. CAPTION SLIDES UP */
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px;
+  background: rgba(124, 31, 46, 0.92);
+  color: var(--offwhite);
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.slide:hover .caption { transform: translateY(0); }
+
+/* ==========================================================
+   3. TEXT - KEYFRAME ANIMATIONS
+   ========================================================== */
+.text-demo { display: flex; flex-wrap: wrap; gap: 24px; }
+.text-card { flex: 1 1 280px; min-height: 120px; border: 2px dashed var(--gold); padding: 16px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
+.text-card small { font-size: 11px; color: #666; }
+
+/* A. FADE IN AND SLIDE UP */
+.fade-text { font-size: 24px; font-weight: bold; color: var(--maroon); animation: fadeUp 2s ease infinite alternate; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* B. TYPING EFFECT WITH BLINKING CURSOR */
+.typing {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  width: 24ch;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--maroon);
+  animation: typing 3s steps(24) infinite alternate, blink 0.7s step-end infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 24ch; } }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* C. COLOR CHANGING TEXT */
+.color-text {
+  font-size: 26px;
+  font-weight: bold;
+  background: linear-gradient(90deg, var(--maroon), var(--gold), #16233e, var(--maroon));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shift 4s linear infinite;
+}
+@keyframes shift { from { background-position: 0% 0; } to { background-position: 300% 0; } }
+
+/* D. HOVER TEXT TRANSITION */
+.hover-text { font-size: 24px; font-weight: bold; color: var(--charcoal); letter-spacing: 1px; transition: letter-spacing 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; cursor: default; }
+.hover-text:hover { letter-spacing: 6px; color: var(--maroon); text-shadow: 3px 3px 0 var(--gold); }
+
+/* E. BOUNCING BALL */
+.ball { width: 46px; height: 46px; border-radius: 50%; border: 4px solid var(--charcoal); background: radial-gradient(circle, #fff 35%, var(--offwhite)); animation: bounce 1s ease-in-out infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-40px); }
+}
+
+/* F. SPINNING LOADER */
+.spinner { width: 46px; height: 46px; border: 5px solid #ddd; border-top-color: var(--maroon); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- FOOTER ---------- */
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 16px 30px; background: var(--charcoal); border-top: 3px solid var(--gold); color: #a9a6ac; font-size: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

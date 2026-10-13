@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREENFIELD TURF - ONLINE BOOKING SYSTEM</title>
+
+<!-- BOOTSTRAP 5 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body { text-transform: uppercase; background-color: #f3f6f3; }
+  input, select, textarea { text-transform: uppercase; }
+  .navbar { background-color: #14391a !important; border-bottom: 3px solid #f2b705; }
+  .banner {
+    /* PLACE YOUR OWN IMAGE AS turf-banner.jpg IN THE SAME FOLDER */
+    background: linear-gradient(rgba(10,40,15,.65), rgba(10,40,15,.65)), url("turf-banner.jpg") center/cover no-repeat;
+    background-color: #1b5e20;
+    min-height: 430px;
+    color: #fff;
+  }
+  .section-title { color: #1b5e20; font-weight: 700; border-bottom: 3px solid #f2b705; display: inline-block; padding-bottom: 4px; }
+  .img-wrap { height: 200px; background: linear-gradient(135deg, #1b5e20, #43a047); overflow: hidden; }
+  .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .btn-green { background-color: #1b5e20; border-color: #1b5e20; color: #fff; }
+  .btn-green:hover { background-color: #14391a; border-color: #14391a; color: #fff; }
+  .table thead { background-color: #1b5e20; color: #fff; }
+  .slot { min-width: 120px; }
+  footer { background-color: #14391a; border-top: 3px solid #f2b705; }
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION BAR ========== -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home">GREENFIELD TURF</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="TOGGLE NAVIGATION">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#home">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#turfs">OUR TURFS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#slots">SLOTS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">PRICING</a></li>
+        <li class="nav-item"><a class="nav-link" href="#booking">BOOK NOW</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== IMAGE BANNER ========== -->
+<header class="banner d-flex align-items-center text-center" id="home">
+  <div class="container">
+    <h1 class="display-4 fw-bold">BOOK YOUR TURF. PLAY YOUR GAME.</h1>
+    <p class="lead">FOOTBALL, CRICKET AND MULTI-SPORT TURFS WITH FLOODLIGHTS. BOOK ONLINE IN MINUTES.</p>
+    <a href="#booking" class="btn btn-warning btn-lg me-2">BOOK NOW</a>
+    <a href="#turfs" class="btn btn-outline-light btn-lg">VIEW TURFS</a>
+  </div>
+</header>
+
+<!-- ========== ALERT STRIP ========== -->
+<div class="container mt-4">
+  <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
+    <strong>OFFER:</strong> GET 15% OFF ON ALL WEEKDAY MORNING SLOTS THIS MONTH.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="CLOSE"></button>
+  </div>
+</div>
+
+<!-- ========== CONTENT SECTION: ABOUT ========== -->
+<section class="py-5" id="about">
+  <div class="container">
+    <h2 class="section-title mb-4">ABOUT US</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <p class="text-secondary">GREENFIELD TURF OFFERS PREMIUM ARTIFICIAL GRASS GROUNDS FOR FOOTBALL, BOX CRICKET AND OTHER TEAM SPORTS. ALL TURFS HAVE FLOODLIGHTS, CHANGING ROOMS AND DRINKING WATER.</p>
+        <p class="text-secondary">CHECK AVAILABLE SLOTS, SELECT YOUR TURF AND CONFIRM YOUR BOOKING ONLINE WITHOUT ANY CALLS.</p>
+      </div>
+      <div class="col-md-6">
+        <div class="row text-center g-3">
+          <div class="col-4"><div class="p-3 bg-white border rounded"><h3 class="text-success mb-0">3</h3><small>TURFS</small></div></div>
+          <div class="col-4"><div class="p-3 bg-white border rounded"><h3 class="text-success mb-0">5K+</h3><small>BOOKINGS</small></div></div>
+          <div class="col-4"><div class="p-3 bg-white border rounded"><h3 class="text-success mb-0">6AM-12AM</h3><small>OPEN</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CARDS ========== -->
+<section class="py-5 bg-white" id="turfs">
+  <div class="container">
+    <h2 class="section-title mb-4">OUR TURFS</h2>
+    <div class="row g-4">
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="img-wrap"><img src="turf1.jpg" alt="FOOTBALL TURF" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <h5 class="card-title">FOOTBALL TURF</h5>
+            <p class="card-text text-secondary">5-A-SIDE AND 7-A-SIDE FOOTBALL GROUND WITH FIFA-GRADE GRASS AND FLOODLIGHTS.</p>
+            <span class="badge text-bg-success">CAPACITY: 14 PLAYERS</span>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center bg-white">
+            <span class="fw-bold text-success">RS. 1,200 / HOUR</span>
+            <a href="#booking" class="btn btn-green btn-sm">BOOK</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="img-wrap"><img src="turf2.jpg" alt="BOX CRICKET TURF" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <h5 class="card-title">BOX CRICKET TURF</h5>
+            <p class="card-text text-secondary">NETTED BOX CRICKET GROUND WITH SOFT PITCH, SCOREBOARD AND SEATING AREA.</p>
+            <span class="badge text-bg-success">CAPACITY: 12 PLAYERS</span>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center bg-white">
+            <span class="fw-bold text-success">RS. 1,000 / HOUR</span>
+            <a href="#booking" class="btn btn-green btn-sm">BOOK</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="img-wrap"><img src="turf3.jpg" alt="MULTI-SPORT TURF" onerror="this.style.display='none'"></div>
+          <div class="card-body">
+            <h5 class="card-title">MULTI-SPORT TURF</h5>
+            <p class="card-text text-secondary">LARGE GROUND SUITABLE FOR FOOTBALL, HOCKEY, TRAINING AND TOURNAMENTS.</p>
+            <span class="badge text-bg-success">CAPACITY: 22 PLAYERS</span>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center bg-white">
+            <span class="fw-bold text-success">RS. 1,800 / HOUR</span>
+            <a href="#booking" class="btn btn-green btn-sm">BOOK</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== BUTTONS: SLOT SELECTOR ========== -->
+<section class="py-5" id="slots">
+  <div class="container">
+    <h2 class="section-title mb-4">TODAY'S SLOT AVAILABILITY</h2>
+    <div class="mb-3 small">
+      <span class="badge text-bg-success">AVAILABLE</span>
+      <span class="badge text-bg-danger">BOOKED</span>
+      <span class="badge text-bg-warning">SELECTED</span>
+    </div>
+
+    <p class="fw-bold mb-2">MORNING AND AFTERNOON</p>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <button class="btn btn-outline-success slot">6 - 7 AM</button>
+      <button class="btn btn-danger slot" disabled>7 - 8 AM</button>
+      <button class="btn btn-outline-success slot">8 - 9 AM</button>
+      <button class="btn btn-outline-success slot">4 - 5 PM</button>
+    </div>
+
+    <p class="fw-bold mb-2">EVENING AND NIGHT</p>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <button class="btn btn-danger slot" disabled>6 - 7 PM</button>
+      <button class="btn btn-warning slot">7 - 8 PM</button>
+      <button class="btn btn-outline-success slot">8 - 9 PM</button>
+      <button class="btn btn-outline-success slot">9 - 10 PM</button>
+      <button class="btn btn-danger slot" disabled>10 - 11 PM</button>
+    </div>
+
+    <p class="fw-bold mb-2">OTHER BUTTON STYLES</p>
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <button class="btn btn-green btn-lg">LARGE</button>
+      <button class="btn btn-green">DEFAULT</button>
+      <button class="btn btn-green btn-sm">SMALL</button>
+      <button class="btn btn-secondary">CANCEL</button>
+      <button class="btn btn-outline-dark">VIEW DETAILS</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TABLE ========== -->
+<section class="py-5 bg-white" id="pricing">
+  <div class="container">
+    <h2 class="section-title mb-4">PRICING TABLE (PER HOUR)</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered align-middle">
+        <thead>
+          <tr><th>#</th><th>TURF</th><th>SPORT</th><th>WEEKDAY</th><th>WEEKEND</th><th>STATUS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>FOOTBALL TURF</td><td>FOOTBALL</td><td>RS. 1,200</td><td>RS. 1,500</td><td><span class="badge text-bg-success">OPEN</span></td></tr>
+          <tr><td>2</td><td>BOX CRICKET TURF</td><td>CRICKET</td><td>RS. 1,000</td><td>RS. 1,300</td><td><span class="badge text-bg-success">OPEN</span></td></tr>
+          <tr><td>3</td><td>MULTI-SPORT TURF</td><td>FOOTBALL / HOCKEY</td><td>RS. 1,800</td><td>RS. 2,200</td><td><span class="badge text-bg-warning">LIMITED SLOTS</span></td></tr>
+          <tr><td>4</td><td>PRACTICE NET</td><td>CRICKET</td><td>RS. 500</td><td>RS. 700</td><td><span class="badge text-bg-danger">UNDER MAINTENANCE</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BOOKING FORM ========== -->
+<section class="py-5" id="booking">
+  <div class="container">
+    <h2 class="section-title mb-4">BOOK YOUR SLOT</h2>
+    <div class="alert alert-info" role="alert">ADVANCE PAYMENT OF 50% IS REQUIRED TO CONFIRM THE BOOKING.</div>
+    <form class="bg-white border rounded p-4" onsubmit="alert('BOOKING REQUEST SUBMITTED SUCCESSFULLY!'); this.reset(); return false;">
+      <div class="row g-3">
+        <div class="col-md-6"><label class="form-label fw-bold">FULL NAME</label><input type="text" class="form-control" placeholder="ENTER NAME" required></div>
+        <div class="col-md-6"><label class="form-label fw-bold">PHONE NUMBER</label><input type="tel" class="form-control" pattern="[0-9]{10}" placeholder="10 DIGIT NUMBER" required></div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">SELECT TURF</label>
+          <select class="form-select" required>
+            <option value="">-- SELECT --</option>
+            <option>FOOTBALL TURF</option><option>BOX CRICKET TURF</option><option>MULTI-SPORT TURF</option>
+          </select>
+        </div>
+        <div class="col-md-4"><label class="form-label fw-bold">DATE</label><input type="date" class="form-control" required></div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">TIME SLOT</label>
+          <select class="form-select" required>
+            <option value="">-- SELECT --</option>
+            <option>6 - 7 AM</option><option>8 - 9 AM</option><option>4 - 5 PM</option>
+            <option>7 - 8 PM</option><option>8 - 9 PM</option><option>9 - 10 PM</option>
+          </select>
+        </div>
+        <div class="col-12"><button type="submit" class="btn btn-green btn-lg">CONFIRM BOOKING</button> <button type="reset" class="btn btn-outline-dark btn-lg">RESET</button></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ========== CONTENT SECTION: CONTACT ========== -->
+<section class="py-5 bg-white" id="contact">
+  <div class="container">
+    <h2 class="section-title mb-4">CONTACT US</h2>
+    <div class="row g-4">
+      <div class="col-md-5">
+        <p class="text-secondary mb-1">EMAIL: BOOKING@GREENFIELDTURF.COM</p>
+        <p class="text-secondary mb-1">PHONE: +91 00000 00000</p>
+        <p class="text-secondary mb-1">ADDRESS: GREENFIELD SPORTS COMPLEX, MAIN ROAD</p>
+        <p class="text-secondary">TIMINGS: DAILY, 6 AM TO 12 MIDNIGHT</p>
+      </div>
+      <div class="col-md-7">
+        <div class="alert alert-success mb-0" role="alert">
+          <h5 class="alert-heading">CANCELLATION POLICY</h5>
+          CANCEL AT LEAST 24 HOURS BEFORE YOUR SLOT FOR A FULL REFUND. LATER CANCELLATIONS ARE NON-REFUNDABLE.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="text-light py-3">
+  <div class="container d-flex flex-column flex-md-row justify-content-between small">
+    <span>&copy; 2026 GREENFIELD TURF. ALL RIGHTS RESERVED.</span>
+    <span>PLAY MORE. WORRY LESS.</span>
+  </div>
+</footer>
+
+<!-- BOOTSTRAP 5 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

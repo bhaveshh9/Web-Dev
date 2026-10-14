@@ -4,18 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CSS ANIMATION AND TRANSITION DEMO</title>
+
+<!-- GOOGLE FONTS (SAME AS THE STORE PAGE) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="animation.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="brand">MATCHDAY KITS</div>
+  <a href="../Assignment_4/index.html" class="brand">MATCHDAY <span>KITS</span></a>
   <nav>
     <ul>
-      <li><a href="index.html">STORE</a></li>
-      <li><a href="#buttons" class="active">BUTTONS</a></li>
-      <li><a href="#images">IMAGES</a></li>
-      <li><a href="#text">TEXT</a></li>
+      <li><a class="nav-link" href="../Assignment_4/index.html">STORE</a></li>
+      <li><a class="nav-link" href="#buttons">BUTTONS</a></li>
+      <li><a class="nav-link" href="#images">IMAGES</a></li>
+      <li><a class="nav-link" href="#text">TEXT</a></li>
     </ul>
   </nav>
 </header>
@@ -27,10 +32,10 @@
     <h2>1. BUTTON EFFECTS</h2>
     <p class="note">HOVER OVER EACH BUTTON. THE LAST ONE USES A CONTINUOUS KEYFRAME ANIMATION.</p>
     <div class="row">
-      <button class="btn btn-lift">LIFT AND SHADOW</button>
-      <button class="btn btn-fill">BACKGROUND FILL</button>
-      <button class="btn btn-grow">SCALE AND SPACING</button>
-      <button class="btn btn-pulse">PULSE ANIMATION</button>
+      <button class="btn btn-lift" type="button">LIFT AND SHADOW</button>
+      <button class="btn btn-fill" type="button">BACKGROUND FILL</button>
+      <button class="btn btn-grow" type="button">SCALE AND SPACING</button>
+      <button class="btn btn-pulse" type="button">PULSE ANIMATION</button>
     </div>
   </section>
 
@@ -39,10 +44,10 @@
     <h2>2. IMAGE EFFECTS</h2>
     <p class="note">HOVER OVER EACH IMAGE TO SEE THE TRANSITION.</p>
     <div class="row">
-      <div class="img-box zoom"><img src="images/images (1).jpg" alt="ZOOM EFFECT"></div>
-      <div class="img-box rotate"><img src="images/images (2).jpg" alt="ROTATE AND COLOR EFFECT"></div>
+      <div class="img-box zoom"><img src="images/images (1).jpg" alt="Barcelona home kit"></div>
+      <div class="img-box rotate"><img src="images/images (2).jpg" alt="Man City away kit"></div>
       <div class="img-box slide">
-        <img src="images/images (3).jpg" alt="SLIDE CAPTION EFFECT">
+        <img src="images/images (3).jpg" alt="AC Milan third kit">
         <div class="caption">AC MILAN - THIRD KIT</div>
       </div>
     </div>
@@ -69,6 +74,21 @@
   <span>&copy; 2026 MATCHDAY KITS. ALL RIGHTS RESERVED.</span>
   <span>CSS ANIMATION AND TRANSITION DEMO</span>
 </footer>
+
+<script>
+  // HIGHLIGHT THE NAV LINK OF THE SECTION CURRENTLY IN VIEW
+  var links = document.querySelectorAll('.nav-link[href^="#"]');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        links.forEach(function (l) {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  document.querySelectorAll('.section').forEach(function (s) { observer.observe(s); });
+</script>
 
 </body>
 </html>

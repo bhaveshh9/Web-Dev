@@ -9,23 +9,36 @@
   --gold: #c6992f;
   --gold-light: #e0b955;
   --offwhite: #f3eee4;
+  --navy: #16233e;
   --ink: #111116;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Barlow', Arial, Helvetica, sans-serif;
+  font-weight: 500;
   background-color: var(--offwhite);
   color: var(--ink);
   text-transform: uppercase;
+  line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+h2, .btn, .brand, .site-header a {
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  letter-spacing: 0.05em;
+}
+
 /* ---------- HEADER AND NAVBAR (FLEXBOX) ---------- */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,16 +47,33 @@ body {
   background-color: var(--charcoal);
   border-bottom: 3px solid var(--gold);
 }
-.brand { color: var(--offwhite); font-weight: bold; letter-spacing: 1px; padding: 16px 0; }
+.brand { color: var(--offwhite); font-size: 26px; padding: 12px 0; text-decoration: none; }
+.brand span { color: var(--gold); }
 .site-header ul { list-style: none; display: flex; flex-wrap: wrap; }
-.site-header a { display: block; padding: 16px 18px; color: var(--offwhite); text-decoration: none; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
-.site-header a:hover, .site-header a.active { background-color: var(--maroon); color: var(--gold-light); }
+.site-header a.nav-link {
+  display: block;
+  padding: 16px 18px;
+  color: var(--offwhite);
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.site-header a.nav-link:hover,
+.site-header a.nav-link:focus-visible,
+.site-header a.nav-link.active { background-color: var(--maroon); color: var(--gold-light); }
 
 /* ---------- LAYOUT ---------- */
 main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20px; }
-.section { background: #fff; border: 1px solid #ccc; border-top: 4px solid var(--maroon); padding: 24px; margin-bottom: 28px; }
-.section h2 { font-size: 20px; color: var(--maroon); margin-bottom: 4px; }
-.section p.note { font-size: 12px; color: #666; margin-bottom: 20px; }
+.section {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: 4px solid var(--maroon);
+  padding: 24px;
+  margin-bottom: 28px;
+  scroll-margin-top: 80px;               /* STOPS STICKY HEADER HIDING THE TITLE */
+}
+.section h2 { font-size: 28px; color: var(--maroon); margin-bottom: 4px; }
+.section p.note { font-size: 13px; color: #666; margin-bottom: 20px; }
 .row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; }
 
 /* ==========================================================
@@ -51,33 +81,35 @@ main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20
    ========================================================== */
 .btn {
   padding: 12px 26px;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 18px;
   border: 2px solid var(--maroon);
   background: var(--maroon);
   color: var(--offwhite);
   cursor: pointer;
   text-transform: uppercase;
 }
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
 /* A. COLOR + LIFT + SHADOW TRANSITION */
-.btn-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+.btn-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
 .btn-lift:hover { transform: translateY(-6px); box-shadow: 0 8px 14px rgba(0, 0, 0, 0.3); background-color: var(--gold); border-color: var(--gold); color: var(--ink); }
 .btn-lift:active { transform: translateY(-2px); }
 
 /* B. BACKGROUND FILL SLIDE */
 .btn-fill {
-  background: linear-gradient(var(--maroon), var(--maroon)) no-repeat left / 0% 100%;
-  color: var(--maroon);
   background-color: transparent;
+  background-image: linear-gradient(var(--maroon), var(--maroon));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  color: var(--maroon);
   transition: background-size 0.4s ease, color 0.4s ease;
 }
 .btn-fill:hover { background-size: 100% 100%; color: var(--offwhite); }
 
 /* C. SCALE + LETTER SPACING */
 .btn-grow { background: var(--charcoal); border-color: var(--charcoal); transition: transform 0.3s ease, letter-spacing 0.3s ease, background-color 0.3s ease; }
-.btn-grow:hover { transform: scale(1.12); letter-spacing: 3px; background-color: var(--maroon-dark); }
+.btn-grow:hover { transform: scale(1.12); letter-spacing: 0.15em; background-color: var(--maroon-dark); border-color: var(--maroon-dark); }
 
 /* D. CONTINUOUS PULSE (KEYFRAMES) */
 .btn-pulse { background: var(--gold); border-color: var(--gold); color: var(--ink); animation: pulse 1.5s infinite; }
@@ -107,26 +139,45 @@ main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 12px;
+  padding: 10px;
   background: rgba(124, 31, 46, 0.92);
   color: var(--offwhite);
   text-align: center;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
   transform: translateY(100%);
   transition: transform 0.4s ease;
 }
 .slide:hover .caption { transform: translateY(0); }
 
+/* TOUCH SCREENS HAVE NO HOVER, SO KEEP THE CAPTION VISIBLE */
+@media (hover: none) {
+  .caption { transform: translateY(0); }
+  .rotate img { filter: none; }
+}
+
 /* ==========================================================
    3. TEXT - KEYFRAME ANIMATIONS
    ========================================================== */
 .text-demo { display: flex; flex-wrap: wrap; gap: 24px; }
-.text-card { flex: 1 1 280px; min-height: 120px; border: 2px dashed var(--gold); padding: 16px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
-.text-card small { font-size: 11px; color: #666; }
+.text-card {
+  flex: 1 1 280px;
+  min-height: 150px;
+  border: 2px dashed var(--gold);
+  padding: 30px 16px 16px;               /* EXTRA TOP SPACE SO THE BALL DOES NOT CLIP */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+.text-card small { font-size: 12px; color: #666; letter-spacing: 0.1em; }
 
 /* A. FADE IN AND SLIDE UP */
-.fade-text { font-size: 24px; font-weight: bold; color: var(--maroon); animation: fadeUp 2s ease infinite alternate; }
+.fade-text { font-family: 'Bebas Neue', Arial, sans-serif; font-size: 30px; letter-spacing: 0.05em; color: var(--maroon); animation: fadeUp 2s ease infinite alternate; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(25px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -138,6 +189,7 @@ main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20
   font-size: 16px;
   font-weight: bold;
   width: 24ch;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid var(--maroon);
@@ -148,26 +200,28 @@ main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20
 
 /* C. COLOR CHANGING TEXT */
 .color-text {
-  font-size: 26px;
-  font-weight: bold;
-  background: linear-gradient(90deg, var(--maroon), var(--gold), #16233e, var(--maroon));
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, var(--maroon), var(--gold), var(--navy), var(--maroon));
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shift 4s linear infinite;
 }
 @keyframes shift { from { background-position: 0% 0; } to { background-position: 300% 0; } }
 
 /* D. HOVER TEXT TRANSITION */
-.hover-text { font-size: 24px; font-weight: bold; color: var(--charcoal); letter-spacing: 1px; transition: letter-spacing 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; cursor: default; }
-.hover-text:hover { letter-spacing: 6px; color: var(--maroon); text-shadow: 3px 3px 0 var(--gold); }
+.hover-text { font-family: 'Bebas Neue', Arial, sans-serif; font-size: 30px; color: var(--charcoal); letter-spacing: 0.05em; transition: letter-spacing 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; cursor: default; }
+.hover-text:hover { letter-spacing: 0.25em; color: var(--maroon); text-shadow: 3px 3px 0 var(--gold); }
 
 /* E. BOUNCING BALL */
 .ball { width: 46px; height: 46px; border-radius: 50%; border: 4px solid var(--charcoal); background: radial-gradient(circle, #fff 35%, var(--offwhite)); animation: bounce 1s ease-in-out infinite; }
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-40px); }
+  50%      { transform: translateY(-30px); }
 }
 
 /* F. SPINNING LOADER */
@@ -175,8 +229,22 @@ main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 30px 20
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ---------- FOOTER ---------- */
-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 16px 30px; background: var(--charcoal); border-top: 3px solid var(--gold); color: #a9a6ac; font-size: 12px; }
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 30px;
+  background: var(--charcoal);
+  border-top: 3px solid var(--gold);
+  color: #a9a6ac;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
 
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .site-header { padding: 0 16px; }
+  .site-header a.nav-link { padding: 12px 10px; }
+  .img-box { width: 100%; max-width: 320px; }
 }

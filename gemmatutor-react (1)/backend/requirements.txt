@@ -1,0 +1,7 @@
+Flask>=3.0
+Flask-Cors>=4.0
+python-dotenv>=1.0
+pymongo>=4.6
+dnspython>=2.4      # needed for mongodb+srv:// (Atlas) URIs
+PyMuPDF>=1.24
+ollama>=0.6.0

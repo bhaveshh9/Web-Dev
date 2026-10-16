@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Management API</title>
+<style>
+  :root { --ink:#0f2a1c; --deep:#14532d; --main:#16a34a; --mint:#dcfce7; --pale:#f0fdf4; --line:#bbf7d0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; scroll-padding-top:72px; }
+  body { font-family:"Segoe UI",Arial,sans-serif; background:var(--pale); color:var(--ink); text-transform:uppercase; letter-spacing:.04em; line-height:1.6; }
+  nav { position:sticky; top:0; z-index:10; background:var(--deep); box-shadow:0 2px 8px rgba(0,0,0,.25); }
+  .bar { max-width:1000px; margin:auto; padding:0 20px; min-height:60px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:4px 24px; }
+  .brand { color:#fff; font-weight:800; font-size:1.05rem; letter-spacing:.12em; text-decoration:none; }
+  .brand span { color:#86efac; }
+  .links { display:flex; flex-wrap:wrap; list-style:none; }
+  .links a { display:block; color:#dcfce7; text-decoration:none; font-size:.82rem; font-weight:600; padding:20px 14px; border-bottom:3px solid transparent; }
+  .links a:hover, .links a:focus-visible { color:#fff; background:var(--main); border-bottom-color:#bbf7d0; outline:none; }
+  header { background:linear-gradient(135deg,var(--deep),var(--main)); color:#fff; padding:80px 0 90px; }
+  .wrap { max-width:1000px; margin:auto; padding:0 20px; }
+  header h1 { font-size:clamp(2rem,6vw,3.6rem); line-height:1.1; letter-spacing:.06em; max-width:14ch; }
+  header p { margin-top:18px; max-width:46ch; color:#dcfce7; font-size:.95rem; }
+  .status { display:inline-block; margin-top:26px; padding:10px 18px; background:#fff; color:var(--deep); font-weight:700; font-size:.85rem; border-radius:999px; }
+  .status.off { background:#fee2e2; color:#7f1d1d; }
+  section { padding:56px 0 8px; }
+  h2 { color:var(--deep); font-size:1.4rem; letter-spacing:.1em; border-left:6px solid var(--main); padding-left:14px; margin-bottom:22px; }
+  .table-box { overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:10px; }
+  table { width:100%; border-collapse:collapse; font-size:.85rem; }
+  th { background:var(--deep); color:#fff; text-align:left; padding:12px 16px; }
+  td { padding:12px 16px; border-top:1px solid var(--line); }
+  td code { text-transform:none; font-family:Consolas,monospace; background:var(--mint); padding:2px 6px; border-radius:4px; }
+  .m { display:inline-block; min-width:68px; text-align:center; color:#fff; font-weight:700; padding:3px 8px; border-radius:4px; }
+  .GET{background:#16a34a} .POST{background:#0d9488} .PUT{background:#a16207} .DELETE{background:#b91c1c}
+  pre { background:var(--ink); color:#bbf7d0; padding:20px; border-radius:10px; overflow-x:auto; font-family:Consolas,monospace; font-size:.85rem; text-transform:none; letter-spacing:0; }
+  footer { margin-top:56px; background:var(--deep); color:#bbf7d0; text-align:center; padding:22px; font-size:.8rem; }
+  @media (max-width:640px){ .links a{padding:12px 10px;} header{padding:56px 0 64px;} }
+</style>
+</head>
+<body>
+<nav>
+  <div class="bar">
+    <a class="brand" href="#top">STUDENT<span>API</span></a>
+    <ul class="links">
+      <li><a href="#top">HOME</a></li>
+      <li><a href="#endpoints">ENDPOINTS</a></li>
+      <li><a href="#fields">FIELDS</a></li>
+      <li><a href="/api/health">HEALTH</a></li>
+      <li><a href="/api/students">ALL STUDENTS</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <h1>STUDENT MANAGEMENT REST API</h1>
+    <p>NODE.JS, EXPRESS.JS, MONGODB AND MONGOOSE. TEST EVERY ENDPOINT WITH THUNDER CLIENT IN VS CODE.</p>
+    <div class="status" id="status">CHECKING SERVER...</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="endpoints">
+    <h2>ENDPOINTS</h2>
+    <div class="table-box"><table>
+      <tr><th>METHOD</th><th>URL</th><th>WHAT IT DOES</th></tr>
+      <tr><td><span class="m POST">POST</span></td><td><code>/api/students</code></td><td>CREATE A STUDENT</td></tr>
+      <tr><td><span class="m GET">GET</span></td><td><code>/api/students</code></td><td>GET ALL STUDENTS</td></tr>
+      <tr><td><span class="m GET">GET</span></td><td><code>/api/students/:id</code></td><td>GET ONE STUDENT BY ID</td></tr>
+      <tr><td><span class="m PUT">PUT</span></td><td><code>/api/students/:id</code></td><td>UPDATE A STUDENT BY ID</td></tr>
+      <tr><td><span class="m DELETE">DELETE</span></td><td><code>/api/students/:id</code></td><td>DELETE A STUDENT BY ID</td></tr>
+    </table></div>
+  </section>
+
+  <section id="fields">
+    <h2>STUDENT FIELDS</h2>
+<pre>{
+  "name": "Rahul Sharma",
+  "rollNo": "CS101",
+  "email": "rahul@example.com",
+  "course": "Computer Science",
+  "age": 20
+}</pre>
+  </section>
+</main>
+
+<footer>STUDENT MANAGEMENT API &middot; BUILT WITH EXPRESS AND MONGOOSE</footer>
+
+<script>
+  const el = document.getElementById("status");
+  fetch("/api/health").then(r => r.json()).then(d => {
+    const ok = d.database === "connected";
+    el.textContent = ok ? "SERVER RUNNING / DATABASE CONNECTED" : "SERVER RUNNING / DATABASE " + d.database.toUpperCase();
+    el.classList.toggle("off", !ok);
+  }).catch(() => { el.textContent = "SERVER NOT REACHABLE"; el.classList.add("off"); });
+</script>
+</body>
+</html>

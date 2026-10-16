@@ -1,0 +1,27 @@
+{
+  "name": "gemmatutor-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cookie-session": "^2.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mongodb": "^6.10.0",
+    "multer": "^2.0.2",
+    "ollama": "^0.5.11",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.10"
+  }
+}
